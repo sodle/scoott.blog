@@ -1,0 +1,23 @@
+---
+import BaseLayout from "./Base.astro";
+
+import Header from "../components/Header.astro";
+
+const { frontmatter } = Astro.props;
+const pageTitle = `${frontmatter.title} - scoott.blog`;
+const pubDate = new Date(frontmatter.pubDate).toLocaleDateString('en-US', {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+});
+---
+
+<BaseLayout title={pageTitle}>
+    <Header mini />
+    <article>
+        <h3>{frontmatter.title}</h3>
+        <p>{frontmatter.author} - {pubDate}</p>
+        <slot />
+    </article>
+</BaseLayout>
