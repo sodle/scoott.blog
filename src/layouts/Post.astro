@@ -5,19 +5,51 @@ import Header from "../components/Header.astro";
 
 const { frontmatter } = Astro.props;
 const pageTitle = `${frontmatter.title} - scoott.blog`;
-const pubDate = new Date(frontmatter.pubDate).toLocaleDateString('en-US', {
-    weekday: 'long',
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
+const pubDate = new Date(frontmatter.pubDate).toLocaleDateString("en-US", {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
 });
 ---
 
 <BaseLayout title={pageTitle}>
     <Header mini />
     <article>
-        <h3>{frontmatter.title}</h3>
-        <p>{frontmatter.author} - {pubDate}</p>
+        <h2 class="title">{frontmatter.title}</h2>
+        <div class="byline">{frontmatter.author} &bull; {pubDate}</div>
         <slot />
     </article>
 </BaseLayout>
+
+<style is:global>
+    article {
+        padding: 1em;
+        border: 1px solid rgb(var(--accent-dark));
+        border-radius: 1em;
+    }
+
+    h2.title {
+        margin-block-start: 0;
+        margin-block-end: 0;
+        line-height: 1;
+        font-size: 2em;
+    }
+
+    div.byline {
+        font-size: 0.75em;
+    }
+
+    article a[href]:hover {
+        color: rgb(var(--accent-light));
+    }
+
+    article img {
+        height: auto;
+        max-width: 60%;
+
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+</style>

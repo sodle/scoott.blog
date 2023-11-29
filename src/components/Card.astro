@@ -3,13 +3,22 @@ interface Props {
 	title: string;
 	body: string;
 	href: string;
+	date: Date;
 }
 
-const { href, title, body } = Astro.props;
+const { href, title, body, date } = Astro.props;
+const shortDate = date.toLocaleDateString("en-US", {
+	month: "short",
+	day: "numeric",
+	year: "numeric",
+});
 ---
 
 <li class="link-card">
 	<a href={href}>
+		<p class="date">
+			{shortDate}
+		</p>
 		<h2>
 			{title}
 			<span>&rarr;</span>
@@ -57,5 +66,8 @@ const { href, title, body } = Astro.props;
 	}
 	.link-card:is(:hover, :focus-within) h2 {
 		color: rgb(var(--accent-light));
+	}
+	p.date {
+		font-size: 0.75em;
 	}
 </style>

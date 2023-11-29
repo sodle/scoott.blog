@@ -28,6 +28,7 @@ posts.sort(postSorter);
 					title={post.frontmatter.title}
 					body={post.frontmatter.description}
 					href={post.url!}
+					date={new Date(post.frontmatter.pubDate)}
 				/>
 			))
 		) : (
