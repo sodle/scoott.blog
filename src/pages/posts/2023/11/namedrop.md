@@ -1,5 +1,5 @@
 ---
-layout: ../../../../../layouts/Post.astro
+layout: ../../../../layouts/Post.astro
 title: 'NameDrop in iOS 17: How it works, and how to protect your privacy'
 pubDate: 2023-11-28T17:30:00-7
 description: 'A viral Facebook post says you should disable NameDrop on your iPhone. What are the risks?'
