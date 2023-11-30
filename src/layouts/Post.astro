@@ -13,7 +13,11 @@ const pubDate = new Date(frontmatter.pubDate).toLocaleDateString("en-US", {
 });
 ---
 
-<BaseLayout title={pageTitle}>
+<BaseLayout
+    title={pageTitle}
+    description={frontmatter.description}
+    author={frontmatter.author}
+>
     <Header mini />
     <article>
         <h2 class="title">{frontmatter.title}</h2>
