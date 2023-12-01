@@ -26,7 +26,7 @@ All the solution code lives in `src/main/kotlin`. Here, I've built a base class,
 
 Each day's puzzle gets its own class file, which extends `BasePuzzle`. These child classes are responsible for defining the input and output types, and implementing the methods for processing input and calculating the puzzle solution. 
 
-Each child class also has a companion object, with a `main` function, so you cna run the code in IntelliJ IDEA with just one click.
+Each child class also has a companion object, with a `main` function, so you can run the code in IntelliJ IDEA with just one click.
 ```kotlin
 companion object {
     @JvmStatic fun main(args: Array<String>) {
