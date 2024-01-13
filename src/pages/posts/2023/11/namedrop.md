@@ -11,7 +11,7 @@ Apple's iOS 17 includes a new feature called [NameDrop](https://support.apple.co
 
 Over this past weekend, several local police departments in the United States published warnings about this feature on Facebook. The posts claim that NameDrop is a privacy concern, and urge users to turn it off, implying that it enables your phone to share your contact information without your consent. Specifically, they warn parents to disable NameDrop on their kids' phones.
 
-![Jefferson Hills Police Department (Pennsylvania, US) warns about privacy concerns related to Apple's new NameDrop feature.](./namedrop_img/jhpd_facebook.png)
+![Jefferson Hills Police Department (Pennsylvania, US) warns about privacy concerns related to Apple's new NameDrop feature.](/media/2023/11/namedrop/jhpd_facebook.png)
 
 These warnings have been widely reshared across Facebook, LinkedIn, and other social networks. They have also been broadcast by many local news outlets.
 
@@ -24,7 +24,7 @@ In order to use NameDrop:
 
 Once the two phones see each other, a confirmation screen will appear on both. In order for NameDrop to complete, the sender must confirm which contact info they'd like to share, and the recipient must confirm that they'd like to receive it.
 
-![NameDrop consent screen, as shown in Apple Support's YouTube video explaining the feature](./namedrop_img/namedrop_consent.png)
+![NameDrop consent screen, as shown in Apple Support's YouTube video explaining the feature](/media/2023/11/namedrop/namedrop_consent.png)
 
 All of these conditions, working together, make it very difficult to activate NameDrop by accident. Your phone is not broadcasting your contact info to everyone you pass on the street, and it won't allow someone to steal your phone number just by walking close to you.
 
@@ -38,7 +38,7 @@ I believe that NameDrop is perfectly safe to use, and that the warnings being po
 2. Select `General`, then `AirDrop`.
 3. Turn off the switch labeled `Bringing Devices Together`.
 
-![How to disable NameDrop](./namedrop_img/disable_namedrop.jpg)
+![How to disable NameDrop](/media/2023/11/namedrop/disable_namedrop.jpg)
 
 # A real privacy tip: how to quickly lock down your iPhone
 
