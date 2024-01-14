@@ -1,0 +1,18 @@
+---
+interface Props {
+    href: string;
+}
+
+const { href } = Astro.props;
+---
+
+<>
+    <a class="ext-link" href={href} target="_blank"><slot /></a><span class="ext-link-indicator">&#x1F865;</span>
+</>
+
+<style>
+    span.ext-link-indicator {
+        vertical-align: super;
+        font-size: 50%;
+    }
+</style>

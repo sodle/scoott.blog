@@ -21,6 +21,7 @@ if (!author) author = "Scott Odle";
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<meta name="author" content={author} />
+		<link rel="sitemap" href="/sitemap-index.xml" />
 		<title>{title}</title>
 	</head>
 	<body>
@@ -63,9 +64,29 @@ if (!author) author = "Scott Odle";
 			white 60%
 		);
 	}
+
+	@media (prefers-color-scheme: light) {
+		html {
+			background: white;
+		}
+
+		main {
+			color: black;
+		}
+	}
+
+	@media (prefers-color-scheme: dark) {
+		html {
+			background: #13151a;
+		}
+
+		main {
+			color: white;
+		}
+	}
+
 	html {
 		font-family: system-ui, sans-serif;
-		background: #13151a;
 		background-size: 224px;
 	}
 	code {
@@ -83,9 +104,8 @@ if (!author) author = "Scott Odle";
 	main {
 		margin: auto;
 		padding: 1rem;
-		width: 1000px;
+		width: 1920px;
 		max-width: calc(100% - 2rem);
-		color: white;
 		font-size: 20px;
 		line-height: 1.6;
 	}

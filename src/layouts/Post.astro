@@ -2,6 +2,7 @@
 import BaseLayout from "./Base.astro";
 
 import Header from "../components/Header.astro";
+import DraftWarning from "../components/DraftWarning.astro";
 
 const { frontmatter } = Astro.props;
 const pageTitle = `${frontmatter.title} - scoott.blog`;
@@ -22,6 +23,7 @@ const pubDate = new Date(frontmatter.pubDate).toLocaleDateString("en-US", {
     <article>
         <h2 class="title">{frontmatter.title}</h2>
         <div class="byline">{frontmatter.author} &bull; {pubDate}</div>
+        {frontmatter.draft ? <DraftWarning /> : null}
         <slot />
     </article>
 </BaseLayout>

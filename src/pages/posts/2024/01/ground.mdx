@@ -1,0 +1,242 @@
+---
+layout: '../../../../layouts/Post.astro'
+title: Why I'm skeptical of Ground News
+pubDate: 2024-01-20T08:00:00-7
+description: "The app publishes fake news from far-right sources, and presents it on equal footing with real journalism. So why are leftist creators so eager to promote it?"
+author: 'Scott Odle'
+tags: ['ground news', 'bias', 'politics']
+draft: true
+---
+import { Picture } from 'astro:assets';
+import ExtLink from '/src/components/ExtLink.astro';
+import larryStory from '/src/assets/2024/01/ground/larry_story.png';
+import factualityChart from '/src/assets/2024/01/ground/graph_average_factuality.png';
+import leftFactualityChart from '/src/assets/2024/01/ground/graph_left_factuality.png';
+import rightFactualityChart from '/src/assets/2024/01/ground/graph_right_factuality.png';
+import polarizationChart from '/src/assets/2024/01/ground/graph_polarization.png';
+
+<ExtLink href="https://ground.news">Ground News</ExtLink> is a website and mobile app, aiming to "offer clarity in an increasingly chaotic media landscape". 
+It collects articles from thousands of news sources across the political spectrum, and groups them into "stories," showing how different media outlets cover the same event differently. 
+According to the About page, the site is managed by a team of 18 people in Waterloo, Ontario.
+
+Ground News has recently begun to sponsor several creators on YouTube and other platforms. 
+These creators are often politically left-of-center, but many educational channels have also begun promoting the site.
+
+# How does Ground News work?
+
+Each of Ground's news sources is prominently labeled with Bias and Factuality ratings. 
+According to the <ExtLink href="https://ground.news/rating-system">Methodology</ExtLink> page, these ratings are sourced from numerous independent rating agencies. 
+Bias ratings span seven categories, from "Far Left" to "Center" to "Far Right". Factuality ratings can be either "Low", "Mixed", or "High". 
+Some sources are also categorized based on their ownership, which is researched independently by the Ground News team.
+
+All of this data is used to deliver Ground News' most prominent feature, Blindspot. 
+Blindspot highlights stories where coverage skews drastically towards one side or other of the political spectrum. 
+Blindspot stories aggregate all the available sources for an event, and present them beneath a unified title and summary. 
+For many larger stories, the summary is available from "Left", "Center", and "Right" perspectives, and a "Bias Insights" feature details the differences in coverage across difference perspectives.
+
+For example, <ExtLink href="https://ground.news/article/its-raining-microplastics-hurricane-larry-dropped-plastic-particles-all-over-nl_4fd545">this story</ExtLink> discusses a lingering impact of 2021's Hurricane Larry, which deposited a large amount of microplastic particles over Newfoundland. 
+This story is labeled as a Blindspot for the right, because 60% of its coverage comes from left-leaning sources.
+
+<Picture 
+    src={larryStory}
+    widths={[240, 540, 720, larryStory.width]}
+    sizes={`(max-width: 360px) 240px, (max-width: 720px) 540px, (max-width: 1600px) 720px, ${larryStory.width}px`}
+    alt="Ground News story discussing microplastics pollution from Hurricane Larry"
+/>
+
+It is unclear how Ground News aggregates these stories together, or how the title, summary, and Bias Insights are generated. 
+Based on the volume of stories that Ground handles each day, proportional to the size of their team, I came to the assumption that this is done using AI, or some other type of automated process. 
+This assumption is strengthened by the "Insights by Ground AI" banner that appears on most stories. 
+However, there is no confirmation that this is the case, nor any explanation of how the app actually works.
+
+# Looking for false balance on Ground News
+False balance is a form of media bias, where well-established facts and research are presented alongside an "opposing point of view." 
+The opposing viewpoint has less evidence to back it up, but gets presented with the same weight, giving the illusion that a story is neutral and unbiased. 
+Carlos Maza gave a <ExtLink href="https://www.youtube.com/watch?v=5OoaS-GdgPY">TEDxCUNY talk</ExtLink> in 2019, where he explained false balance and its effects quite compellingly.
+
+Conceptually, Ground's Blindspot stories seem like a place where false bias would easily creep in.
+ After exploring their site for a bit, I have two questions:
+1. Are Blindspot stories well-sourced, whether they're left-leaning or right-leaning? If not, does one side lie more than the other?
+2. Are there any examples of an outright lie being presented as a Blindspot for one side or the other?
+
+To answer these questions, I used a Python script to retrieve 500 Blindspots from November and December of 2023. 
+264 of these stories were tagged as Blindspots for the left, meaning that their coverage skews towards the left. 
+The remaining 236 were presented as right-wing Blindspots, meaning that their coverage is mostly left-leaning.
+
+# Question 1: Factuality across the political divide
+
+## Overall source quality
+First off, I counted the number of sources in each Blindspot story, grouped by their Factuality rating. 
+This chart shows the average quality and quantity of sources, for Blindspot stories on each side of the aisle.
+
+<Picture
+    src={factualityChart}
+    alt="Average source factuality for Blindspots"
+/>
+
+Stories from both sides tend to have a similar number of sources (17.7 on average for left-leaning stories, and 16.4 for left-leaning ones). 
+However, the quality of sources varies drastically:
+- Left-leaning stories have far more high-factuality sources: 10.9 on average, compared to 2.7 for the right.
+- The majority of sources for right-leaning stories are rated as "mixed factuality". Ground News points out that mixed-factuality sources might:
+    - "not always use proper sourcing"
+    - "use loaded language that alters the context of facts"
+    - "fail to correct false or misleading information"
+- Low-factuality sources are nearly nonexistent on the left, with an average of 0.2 per story. The average right-leaning story uses 3 low-factuality sources.
+
+## High-quality sources
+Drilling into the high-factuality sources specifically, we can see a clear difference.
+
+<Picture 
+    src={leftFactualityChart}
+    alt="Number of sources for left-leaning stories"
+/>
+
+<Picture 
+    src={rightFactualityChart}
+    alt="Number of sources for right-leaning stories"
+/>
+
+Left-leaning stories tend to have a healthier number of high-factuality sources. 
+Every story has at least one, and most have five or ten (with a statistical mode of 5).
+
+For right-leaning stories, the picture is much grimmer. 
+Most of them don't have a single high-fact source, and the ones that do have less than five.
+
+## Polarization
+Finally, I used Ground's bias ratings to measure how "polarized" each story's coverage is. 
+A story's polarization is measured by the percentage of total sources that are left-, center-, or right-leaning (sources with unknown bias are excluded here).
+
+<Picture
+    src={polarizationChart}
+    alt="Average polarization of stories"
+/>
+
+Right-leaning stories tend to draw the overwhelming majority of their coverage from the right (76.5%). 
+On the left, things are more balanced, with the average story drawing 54.3% of its sources from the left.
+
+The difference in "centrist" coverage is also notable. 
+Left-leaning stories have 39.9% coverage from the center on average, while right-leaning ones have only 17.1%. 
+Ground News says that sources it labels as centrist "have no discernible political position", and use well-sourced reporting with few loaded words.
+
+_**These charts support the assertion that right-leaning stories have lower-quality sources on average, and tend to be more politically polarized.**_
+
+# False stories on Ground News
+Through manually reading through some of the collected stories, I was able to discover several instances where Ground News reported a false story. 
+These stories were all presented as "Blindspots" for left-leaning readers.
+
+I've prepared deep-dives for three of these stories. 
+These fall into categories that are controversial in our current political climate, but are extremely important in the US today.
+
+## LGBTQ+ hate
+LGBTQ+ people, especially the transgender and non-binary communities, have received an overwhelming amount of backlash in the media over the past several years. 
+This coverage is especially common in right-leaning media, which uses misleading quotes to portray gay and trans people as child predators. 
+This "groomer" rhetoric has been linked to numerous instances of terrorism in the US in 2022 and 2023. 
+It has also been used to justify legislation that further marginalizes the queer community.
+
+Transphobic media on the right has also crafted a false narrative about trans women competing in women's sports. 
+The right claims that this creates an unfair advantage, but the available data has yet to corroborate that idea. 
+Though they are less dramatic than the false allegations of pedophilia, these stories help to shape public opinion. 
+After reading enough of this nonsense, a reader might come to view trans women as con artists trying to cheat at sports, which can be a barrier to general acceptance in society.
+
+### The story
+On December 5, 2023, Ground News published <ExtLink href="https://ground.news/article/president-of-lgbtq-advocate-group-says-women-should-learn-to-lose-gracefully-to-trans-competitors_f174c4">_President of LGBTQ Advocate Group Says Women Should 'Learn To Lose Gracefully' To Trans Competitors_</ExtLink>.
+This story is labelled as a Blindspot for the left, with 100% of its 20 sources leaning to the right. 
+The article lacks any high-factuality sources. 65% of sourcing is Mixed factuality, and the remaining 35% is Low factuality.
+
+Most of the cited sources begin with a similar statement to this one from the <ExtLink href="https://tennesseestar.com/news/president-of-lgbtq-advocate-group-says-women-should-learn-to-lose-gracefully-to-trans-competitors/admin/2023/12/06/">Tennessee Star</ExtLink>:
+
+> The president of the National Women’s Law Center said on Tuesday during congressional testimony that women should "learn to lose gracefully" to transsexual competitors.
+
+This framing portrays trans athletes as their allies as condescending and sympathetic towards the cis women they compete against.
+
+### The truth
+The story refers to a hearing before the House Oversight Committee. 
+The full content can be seen at <ExtLink href="https://oversight.house.gov/hearing/the-importance-of-protecting-female-athletics-and-title-ix/">oversight.house.gov</ExtLink>.
+Fatima Goss Graves, the President and CEO of the National Women's Law Center, delivered the following testimony in this hearing:
+
+> Trans students participate in sports for the same reasons as [other] kids. Because it is fun, because it creates belonging, community, because it teaches so much about persistence, leadership and discipline, and last, they learn to lose gracefully and often, win with dignity.
+
+This isn't remotely the same statement that's being quoted by right-leaning media.
+Graves did not suggest that cis women should "learn to lose gracefully" to trans competitors.
+The phrase is just one of many examples she gives, of the benefits that all athletes gain from participating in sports.
+
+## COVID-19 and vaccine misinformation
+In the four years since it was first discovered, COVID-19 has been the subject of many popular conspiracy theories. 
+These theories question the safety and efficacy of masks and vaccines, especially vaccines based on messenger RNA (mRNA). 
+
+The news media bears an important responsibility when reporting on public health issues.
+ Readers must be well-informed, so that they do not make health decisions that might endanger themselves and the people around them.
+
+### The story
+<ExtLink href="https://ground.news/article/florida-surgeon-general-demands-answers-after-dna-fragments-found-in-covid-shots">_Florida Surgeon General Demands Answers After 'DNA Fragments' Found in COVID Shots_</ExtLink> was published on December 7, 2023. 
+Coverage cites only six sources, all of them right-leaning and either low- or mixed-factuality.
+
+All six sources discuss an <ExtLink href="https://www.floridahealth.gov/about/_documents/12-06-2023-DOH-Letter-to-FDA-RFI-on-COVID-19-Vaccines.pdf">open letter</ExtLink> from Florida Surgeon General Joseph Ladapo.
+This letter alleges that the COVID-19 mRNA vaccines contain traces of DNA, and demands a response from the FDA and CDC. 
+It cites a <ExtLink href="https://osf.io/preprints/osf/b9t7m">pre-print</ExtLink> study by Kevin McKernan, which claims to have found fragments of DNA from the SV-40 virus in vaccine doses, and speculates about the potential health risks of exposure to this DNA.
+
+### The truth
+The truth here is unknown. McKernan's study is a pre-print, and it has not yet been replicated or undergone peer review. 
+It is very irresponsible for a news outlet to broadcast this preliminary finding as a scientific fact. 
+The study also cites several Reddit and Twitter users in its acknowledgements, which is not usually a sign of a high-quality academic paper.
+
+Ladapo is openly hostile towards COVID-19 protection measures, and defensive of his decision not to impose lockdowns or mask mandates when the virus reached Florida. 
+Many of his recent Twitter posts cast doubt on the reported numbers of COVID cases, deaths, and hospitalizations. 
+He recommends against vaccines or boosters for most Floridians. 
+As with McKernan, amplifying his conspiracy theories is a threat to public health.
+
+## Election fraud and January 6th conspiracy theories
+Joe Biden was elected President of the United States in November of 2020, defeating Donald Trump's re-election campaign. 
+Despite overwhelming evidence that Biden's victory was legitimate, Trump and his supporters continue to advance conspiracy theories about the election results. 
+These theories claim that the Biden campaign tampered with the voting and counting processes, and used mail-in ballots to commit widespread voter fraud. 
+These claims have never been substantiated, and have come to be known as the "Big Lie."
+
+These negative attitudes about the election came to a head on January 6th, 2021, as Congress prepared to count the official electoral votes and confirm Biden as the next President. 
+A mob of Trump supporters gathered outside the Capitol in protest, overpowered the US Capitol Police, and entered the building. 
+The group proceeded towards the chamber where votes were being counted, chanting threats and violent slogans. 
+All members of Congress were safely evacuated from the building as the Capitol Police regained control of the situation, but several protesters and police officers were killed or injured during the attack. 
+In the aftermath of this attack, right-leaning pundits have speculated that the attack was orchestrated by the Biden campaign, the FBI, or other US government organizations. These claims have never been substantiated, and have become another facet of the Big Lie.
+
+Another presidential election will occur this year, and it will most likely be a rematch between Biden and Trump. 
+By continuing to spread falsehoods about the results of the 2020 election, news agencies might cast doubt on the results of the 2024 election. 
+This doubt is used to justify stricter regulations around voting, such as eliminating mail-in voting and requiring a photo ID to vote. 
+These rules have not been shown to decrease voter fraud, as voter fraud is already <ExtLink href="https://www.reuters.com/article/idUSL1N2XP2AI/">extremely rare</ExtLink>. 
+However, they do make it much harder for certain underprivileged groups to vote, which has the power to swing elections toward the GOP. 
+Additionally, this doubt may lead to another event like January 6th, attempting to overturn the election again.
+
+### The story
+Ground News published <ExtLink href="https://ground.news/article/as-many-as-200-fbi-agents-involved-on-january-6_838f1b">_As Many As 200 FBI Agents Involved on January 6_</ExtLink> on November 29, 2023. 
+Coverage comes from 11 sources, all right-leaning. 
+73% of sources have low factuality, and the remaining 23% have mixed factuality.
+
+All of these sources are simply re-publishing a <ExtLink href="https://twitter.com/TPostMillennial/status/1730295119461458216">Newsmax interview with Representative Clay Higgins</ExtLink>, a Republican from Louisiana. 
+In this interview, Higgins states a "suspicion" that the FBI embedded over 200 agents in the January 6th crowd, disguised as Trump supporters. 
+He also asserts that the FBI infiltrated online forums and chats to orchestrate the attack.
+
+### The truth
+There is no evidence to back up Higgins' claims, as he is only citing his own suspicions. 
+There are no facts here. 
+A more accurate headline might be something like _"Rep. Higgins Suspects 200 FBI Agents Involved on January 6"_, but the responsible action would be to not publish this story at all.
+
+The Newsmax interview also includes a clip of Higgins questioning FBI Director Christopher Wray. 
+Wray categorically denies that his agency was involved in the January 6th attack.
+
+_**As you can see, there are many examples of Ground News publishing false stories as Blindspots. These false stories are overwhelmingly right-leaning, and they are presented as true stories that left-leaning media failed to cover.**_
+
+# Conclusion
+The data collected here shows that left-leaning stories tend to have far better sourcing than right-leaning ones, and are less politically polarized. 
+The process for selecting, grouping, and summarizing these stories does not seem to take these differences into account, and there is little transparency into how that process works. 
+This leads the platform to publish dodgy stories from the right, with the appearance that they are just as valid as high-fact reporting from the left or the center.
+
+This false equivalence has consequences: a reader unfamiliar with the topic in question might be less likely to spot the lies on one side or the other. 
+Additionally, a reader who has already chosen a side might see their views legitimized by Ground's coverage, and be led further into misinformation.
+
+I believe Ground News has a lot of potential as a tool for rooting out media bias, but the current implementation undermines this potential. 
+In order for Ground to be seen as a trustworthy source, the company needs to be more transparent about how they select and present stories. 
+More curation is needed to ensure that obvious mistruths, like the ones above, don't get published.
+
+It is disheartening to see leftist and educational creators eagerly promote Ground News in its current state. 
+Without better transparency and a better curation process, the site only serves to boost fake news, and cast doubt on proven facts and progressive ideas.
+
+# Questions? Feedback?
+Please email [info@scoott.blog](mailto:info@scoott.blog) to discuss this article further.

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://scoott.blog/sitemap-index.xml
