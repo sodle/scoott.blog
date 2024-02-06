@@ -44,14 +44,18 @@ if (!author) author = "Scott Odle";
 			<p>
 				<a href="https://github.com/sodle" target="_blank">GitHub</a>
 			</p>
+			<p>
+				<a href="https://bsky.app/profile/sjodle.com" target="_blank"
+					>Bluesky</a
+				>
+			</p>
 		</footer>
 	</body>
 </html>
+
 <style is:global>
 	:root {
 		--accent: 136, 58, 234;
-		--accent-light: 224, 204, 250;
-		--accent-dark: 49, 10, 101;
 		--accent-gradient: linear-gradient(
 			45deg,
 			rgb(var(--accent)),
@@ -60,12 +64,36 @@ if (!author) author = "Scott Odle";
 		);
 	}
 
+	@media (prefers-color-scheme: dark) {
+		:root {
+			--background: 19, 21, 26;
+			--font-color: 255, 255, 255;
+			--gray: 204, 204, 204;
+			--accent-light: 224, 204, 250;
+			--accent-dark: 49, 10, 101;
+		}
+	}
+
+	@media (prefers-color-scheme: light) {
+		:root {
+			--background: 236, 234, 229;
+			--font-color: 0, 0, 0;
+			--gray: 51, 51, 51;
+			--accent-light: 49, 10, 101;
+			--accent-dark: 224, 204, 250;
+		}
+	}
+
 	html {
-		background: #13151a;
+		background: rgb(var(--background));
 	}
 
 	main {
-		color: white;
+		color: rgb(var(--font-color));
+	}
+
+	h2:not(.title) {
+		color: rgb(var(--gray));
 	}
 
 	html {

@@ -29,10 +29,6 @@ const pubDate = new Date(frontmatter.pubDate).toLocaleDateString("en-US", {
 </BaseLayout>
 
 <style is:global>
-    h2:not(.title) {
-        color: #ccc;
-    }
-
     h3 {
         color: #aaa;
         font-style: italic;
@@ -79,5 +75,11 @@ const pubDate = new Date(frontmatter.pubDate).toLocaleDateString("en-US", {
 
     article h2 {
         font-size: 1.25em;
+    }
+
+    pre.astro-code {
+        padding: 1em;
+        border-radius: 10px;
+        border: 1px solid rgb(var(--gray));
     }
 </style>
