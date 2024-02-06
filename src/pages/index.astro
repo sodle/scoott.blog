@@ -4,17 +4,9 @@ import Layout from "../layouts/Base.astro";
 import Header from "../components/Header.astro";
 import Card from "../components/Card.astro";
 
-type Frontmatter = Record<string, any>;
+import { getPosts } from "../posts.astro";
 
-function postSorter(post1: Frontmatter, post2: Frontmatter): number {
-	const date1 = new Date(post1.frontmatter.pubDate);
-	const date2 = new Date(post2.frontmatter.pubDate);
-	return date2.getTime() - date1.getTime();
-}
-
-const unfilteredPosts = await Astro.glob("../pages/posts/**/*.{md,mdx}");
-const posts = unfilteredPosts.filter((p) => !p.frontmatter.draft);
-posts.sort(postSorter);
+let posts = await getPosts();
 ---
 
 <Layout title="scoott.blog">

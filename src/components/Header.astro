@@ -9,6 +9,7 @@ const { mini } = Astro.props;
 <>
     <h1><a href="/">scoott.blog</a></h1>
     {mini ? <></> : <h2>Personal blog of Scott J. Odle</h2>}
+    {import.meta.env.DEV ? <h2 style="color: red">DEV MODE</h2> : <></>}
 </>
 
 <style>
